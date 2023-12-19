@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div id="uploadContainer">
+    <div id="loginSize">
+    <h1 class="formHeading">Upload</h1>
+    <form method="POST" class="uploadForm" enctype="multipart/form-data">
+        {{ form.csrf_token }}<br>
+        {{ form.hidden_tag() }}
+            {{ form.title.label(class_="formLabel")  }}
+            {{ form.title(class_="formDesign")}}<br>
+            {{ form.key.label(class_="formLabel")  }}
+            {{ form.key(class_="formDesign") }}<br>
+            {{ form.bpm.label(class_="formLabel")  }}
+            {{ form.bpm(class_="formDesign") }}<br>
+            {{ form.timeSignature.label(class_="formLabel")  }}
+            {{ form.timeSignature(class_="formDesign") }}<br>
+            {{ form.file.label(class_="formLabel")  }}
+            {{ form.file (class_="formDesign")}}<br>
+            <p>{{ form.submit }}</p>
+    </form>
+    </div>
+</div>
+{% endblock %}

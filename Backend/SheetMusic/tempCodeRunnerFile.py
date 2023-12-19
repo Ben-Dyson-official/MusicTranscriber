@@ -1,0 +1,2 @@
+
+#addBass(bg, stavesUsed)

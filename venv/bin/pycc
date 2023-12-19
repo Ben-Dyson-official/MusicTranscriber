@@ -1,0 +1,3 @@
+#!/Users/bendyson/Coding/NEA/NEA/bin/python
+from numba.pycc import main
+main()

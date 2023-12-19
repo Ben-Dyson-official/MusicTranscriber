@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block app_content %}
+
+    <div class='topIndexDiv'>
+        <h1 class='introDiv'>Hi, {{current_user.username }}!</h1>
+    </div>
+    <div class="bottomIndexDiv">
+        <div style="height: 10px;"></div>
+        <div class="sloganDiv">
+            Convert your music to sheet music!
+        </div>
+        <div class="taglineDiv">
+        This software is an easy-to-use smart tool to aid in your music composition.
+        </div>
+        <div class="taglineDiv">
+            Simply press the button below to begin.
+        </div>
+
+        <div class="buttonContainer">
+            <button class="button3"><a href="{{ url_for('upload') }}"<a> UPLOAD</a></button>
+
+        </div>
+    </div>
+{% endblock %}

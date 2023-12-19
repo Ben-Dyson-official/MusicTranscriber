@@ -1,0 +1,335 @@
+a{
+    color: rgb(175,175,175) !important;
+}
+
+a:hover {
+    text-shadow: 1px 1px 1px rgb(175,175,175) !important;
+    filter: dropshadow(color=rgb(175, 175, 175), offx=2, offy=2) !important;
+}
+
+body{
+    overflow: overlay;
+}
+
+.footer {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 50px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    color: rgb(175,175,175);
+}
+
+.container1 {
+    color: rgb(175,175,175);
+    margin-left: 50px;
+    width: 100%;
+    height: 100vh;
+    border-bottom: 20px;
+    border-color: black;
+}
+
+.container2{
+    font-size: 30px;
+    text-decoration: underline
+}
+
+.piecesDiv{
+    margin-left: 20px;
+}
+
+.welcomeMessage{
+    margin-top: 15vh;
+    color: rgb(255, 255, 255);
+    font-size: 100px;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.topcontainer{
+    color: black;
+    margin-left: 50px;
+    width: 100%;
+    height: 100vh;
+}
+
+.topIndexDiv{
+    text-align: center;
+}
+
+.bottomIndexDiv{
+    text-align: center;
+}
+
+.alertcontainer {
+    color: black;
+    margin-left: 50px;
+}
+
+hr.solid{
+    border-top: 1px solid rgb(175,175,175);
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.formDesign {
+    font-size: 15px;
+    font-family: sans-serif;
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: rgb(117, 117, 117);
+    text-align: centre;
+}
+
+.formLabel {
+    margin-top: 15px;
+    color: rgb(175,175,175);
+    
+}
+
+.formButton {
+    color: rgb(175,175,175);
+    background-color: black;
+    border: 100px;
+    margin-top: 5px;
+}
+
+.formHeading{
+    color:rgb(175,175,175);
+}
+
+.imageDiv{
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.imageSize{
+    width: 35vw;
+    height: 80vh;
+}
+
+#loginContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginSize{
+    width: 400px;
+}
+
+#registerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#registerSize {
+    width: 400px;
+}
+
+#uploadContainer {
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    margin:0;
+    padding: 0;
+}
+
+#uploadSize {
+    width: 400px;
+}
+
+.uploadForm{
+    position: relative;
+}
+
+.uploadFormInput {
+    position: absolute;
+    left: -999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#uploadFormInput {
+    position: absolute;
+    left: -999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.uploadLabel {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 35px;
+    background: rgb(88, 53, 0);
+    border-radius: 35px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.uploadFormText {
+    font-weight: 600;
+    font-size: 18px;
+    color: whitesmoke;
+}
+
+.uploadLabel:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px  10px rgba(0, 0, 0 ,0.1);
+}
+
+
+.bodyBackground {
+    background-color: rgb(0,0,0);
+    height: 100%;
+    /* overflow-y: scroll; */
+    overflow-x: hidden;
+}
+
+.topImage{
+    background-image: url('NEAbackgroundimage0.7.png');
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+}
+
+.button1{
+    background-color: rgb(88, 53, 0);
+    width: 30%;
+    height: 100%;
+    border: 0;
+    border-radius: 10px;
+}
+
+.button2{
+    background-color: rgb(88, 53, 0);
+    width: 30%;
+    height: 100%;
+    border: 0;
+    border-radius: 5px;
+    margin-left: 5vw;
+}
+
+.button3{
+    background-color: rgb(88, 53, 0);
+    width: 70%;
+    height: 100%;
+    border: 0;
+    border-radius: 5px;
+    font-size: 70px;
+}
+
+.centreDiv{
+    display: flex;
+    justify-content: center;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.fileInput {
+    width: 100px;
+}
+
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+  
+.btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+}
+  
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+
+.image {
+    max-width: 700px;
+    height: 300px;
+}
+
+.leftDiv {
+    float: left;
+    width: 40%;
+    font-size: xx-large;
+}
+
+.rightDiv {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-right: 10vw;
+    background-color: rgba(119, 73, 3, 0.7);
+    float: right;
+    overflow: hidden;
+    width: 40%;
+    height: 65vh;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.sloganDiv {
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-bottom: 5%;
+    margin-top: 10%;
+    color: rgb(173, 173, 173);
+    font-size: 40px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+}
+
+.introDiv {
+    font-size: 50px;
+    color: rgb(175,175,175);
+}
+
+.taglineDiv {
+    margin-left: 8%;
+    margin-right: 8%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: rgb(173, 173, 173);
+}
+
+.background {
+    background-color: rgb(88, 53, 0);
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100%;
+    margin-top: 10%;
+}

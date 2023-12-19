@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div class="container1">
+    <table>
+        <tr valign="top">
+            <td>
+                <h1 style="margin-left: 10px;">User: {{ user.username }}</h1>
+                {% if user.about_me %}<p style="margin-left: 10px;">{{ user.about_me }}</p>{% endif %}
+                {% if user.last_seen %}<p style="margin-left: 10px;">Last seen on: {{ user.last_seen }}</p>{% endif %}
+                <p style="margin-left: 10px;">Number of Pieces: {{ totalUserPieces }}</p>
+            </td>
+            {% if user == current_user %}
+            <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
+            {% endif %}
+        </tr>
+    </table>
+    <div class='container2'>Pieces: </div>
+    <div class='piecesDiv'>
+    {% for piece in pieces %}
+        {% include '_piece.html' %}
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

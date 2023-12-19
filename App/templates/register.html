@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div id='registerContainer'>
+    <div id='registerSize'>
+    <h1 class="formHeading">Register</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+            {{ form.username.label(class_="formLabel") }}<br>
+            {{ form.username(class_="formDesign") }}<br>
+            {{ form.email.label(class_="formLabel") }}<br>
+            {{ form.email(class_="formDesign") }}<br>
+            {{ form.password.label(class_="formLabel") }}<br>
+            {{ form.password(class_="formDesign") }}<br>
+            {{ form.password2.label(class_="formLabel") }}<br>
+            {{ form.password2(class_="formDesign") }}<br>
+        </p>
+        <p>{{ form.submit(class_="formButton") }}</p>
+    </form>
+    </div>
+</div>
+{% endblock %}
