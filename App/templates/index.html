@@ -1,25 +1,23 @@
 {% extends 'base.html' %}
 
 {% block app_content %}
-
-    <div class='topIndexDiv'>
-        <h1 class='introDiv'>Hi, {{current_user.username }}!</h1>
+    <div class="welcome-section">
+        <h1 class="welcome-title">Welcome, {{ current_user.username }}!</h1>
     </div>
-    <div class="bottomIndexDiv">
-        <div style="height: 10px;"></div>
-        <div class="sloganDiv">
-            Convert your music to sheet music!
+
+    <div class="info-section">
+        <div class="slogan">
+            <h2>Convert your music to sheet music effortlessly!</h2>
         </div>
-        <div class="taglineDiv">
-        This software is an easy-to-use smart tool to aid in your music composition.
+        <div class="description">
+            <p>Our smart tool simplifies music composition by transcribing your melodies into sheet music.</p>
         </div>
-        <div class="taglineDiv">
-            Simply press the button below to begin.
+        <div class="description">
+            <p>Click below to get started.</p>
         </div>
 
-        <div class="buttonContainer">
-            <button class="button3"><a href="{{ url_for('upload') }}"<a> UPLOAD</a></button>
-
+        <div class="upload-button-container">
+            <a href="{{ url_for('upload') }}" class="upload-button">UPLOAD</a>
         </div>
     </div>
 {% endblock %}

@@ -9,7 +9,7 @@ def fft(x):
         return x
     else:
         evenX = fft(x[::2]) #perform recursion on the even values
-        oddX = fft(x[1::2]) #perform recursion on the even values
+        oddX = fft(x[1::2]) #perform recursion on the odd values
 
         factor = np.exp(-2j*np.pi*np.arange(N)/ N) #mathematical formula to calculate the factor that is required
 
@@ -60,7 +60,7 @@ if __name__=='__main__':
     N = len(X)
     n = np.arange(N)
     T = N/samplerate
-    freq = n/T 
+    freq = n/T
 
     n_oneside = N//2
 

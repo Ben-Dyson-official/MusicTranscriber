@@ -2,13 +2,14 @@ import os
 from pydub import AudioSegment
 from pydub.utils import get_array_type
 import scipy.fft
+# from . import gen_sig, fft as gen_sig, custom_fft
 import scipy.signal
 import array
 import matplotlib.pyplot as plt
 import numpy as np
 
 def frequency_spectrum(sample, max_frequency=800):
-    
+
     bit_depth = sample.sample_width * 8 #calculates bit depth of the audio
     array_type = get_array_type(bit_depth)
     raw_audio_data = array.array(array_type, sample._data)
@@ -19,7 +20,7 @@ def frequency_spectrum(sample, max_frequency=800):
     raw_audio_data = raw_audio_data - np.average(raw_audio_data) #zero centering the data
 
     freq_magnitude = scipy.fft.fft(raw_audio_data) #runs the fourier transform on the audio
-    
+
     freq_magnitude = freq_magnitude[:(n // 2)] #normalise the result of the fft
 
     if max_frequency:
@@ -54,7 +55,7 @@ def get_notes(freq, chord):
     if freq>(note_frequency['C0']*(2**i)-TOLERANCE) and freq<(note_frequency['C0']*(2**i)+TOLERANCE)and('C'+str(i))not in chord:
         notesToReturn='C'+str(i)
     elif freq>(note_frequency['C#0']*(2**i)-TOLERANCE) and freq<(note_frequency['C#0']*(2**i)+TOLERANCE)and('C#'+str(i))not in chord:
-        notesToReturn='C#0'+str(i)
+        notesToReturn='C#'+str(i)
     elif freq>(note_frequency['D0']*(2**i)-TOLERANCE) and freq<(note_frequency['D0']*(2**i)+TOLERANCE)and'D'+str(i)not in chord:
         notesToReturn='D'+str(i)
     elif freq>(note_frequency['D#0']*(2**i)-TOLERANCE) and freq<(note_frequency['D0']*(2**i)+TOLERANCE)and'D#'+str(i)not in chord:
@@ -95,16 +96,16 @@ def predict_note_starts(audio, segment_ms, actual_notes=[]):
                 predicted_notes.append(ms)
     return predicted_notes
 
-def predict_notes(audio, predicted_starts, segment_ms): 
+def predict_notes(audio, predicted_starts, segment_ms):
     #This function will predict the notes in the segmetns between each predicted start
     predicted_notes = []
 
     for i, start in enumerate(predicted_starts):
-        sample_from = start + segment_ms 
+        sample_from = start + segment_ms
         sample_to = start + 11*segment_ms
-        if i < len(predicted_starts)-1: 
+        if i < len(predicted_starts)-1:
             sample_to = min(predicted_starts[i+1], sample_to)
-        
+
         segment = audio[sample_from: sample_to] #makes the segment
         freq_array, freq_magnitude = frequency_spectrum(segment)
 

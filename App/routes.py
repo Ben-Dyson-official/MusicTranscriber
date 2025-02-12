@@ -8,6 +8,7 @@ from App.models import User, Piece
 from App.email import send_password_reset_email
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
+from werkzeug.security import generate_password_hash
 #from werkzeug.utils import secure_filename
 from datetime import datetime
 import time
@@ -23,7 +24,7 @@ def welcome(): #function sets up welcome page
 @app.route('/index')
 @login_required
 def index(): #function sets up home page
-    return render_template('index.html', title='NEAHub')
+    return render_template('index.html', title='MusicTranscriber')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login(): #login page
@@ -32,7 +33,7 @@ def login(): #login page
     form = LoginForm() #create a object of login form
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first() #sql aclhemy query the database
-        if user is None or not user.check_password(form.password.data): 
+        if user is None or not user.check_password(form.password.data):
             #if there is no user with the username or the password is incorrect output invalid and redirect to login again
             flash('Invalid username or password')
             return redirect(url_for('login'))
@@ -45,7 +46,7 @@ def login(): #login page
     #if no login render the html for the login page sneding in the form
     return render_template('login.html', title='Sign In', form=form)
 
-@app.route('/logout') 
+@app.route('/logout')
 def logout():
     logout_user() #logout user
     return redirect(url_for('welcome')) #send to welcome page
@@ -54,6 +55,8 @@ def logout():
 def register():
     if current_user.is_authenticated: #if user is logged in then send to home page
         return redirect(url_for('index'))
+    flash(generate_password_hash('example'))
+    
     form = RegistrationForm() #create an object of registration form
     if form.validate_on_submit():
         #create an object of the user
@@ -66,7 +69,7 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login')) #send the user to the login page
     return render_template('register.html', title='Register', form=form)
-        
+
 @app.route('/user/<username>')
 @login_required
 def user(username):
@@ -100,7 +103,7 @@ def edit_profile():
         db.session.commit()
         flash('Your changes have been saved')
         return redirect(url_for('edit_profile'))
-    elif request.method == 'GET': 
+    elif request.method == 'GET':
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile', form=form)
@@ -140,21 +143,21 @@ def upload():
     form = UploadForm() #create an object of upload form
     if form.validate_on_submit():
         try: #catch any file uploading errors
-            audio_upload_path = '/Users/bendyson/Coding/NEA/App/static/AudioUploads'
-            sheet_upload_path = '/Users/bendyson/Coding/NEA/App/static/SheetUploads'
+            audio_upload_path = '/Users/bendyson/Coding/gitRepos/MusicTranscriber/App/static/AudioUploads'
+            sheet_upload_path = '/Users/bendyson/Coding/gitRepos/MusicTranscriber/App/static/SheetUploads'
 
             #checks if user is currently logged in to amend upload path to user folder in upload folder
-            if current_user.is_authenticated: 
+            if current_user.is_authenticated:
                 #creates the user folder in audio upload folder if there isnt one
-                if not os.path.isdir(os.path.join(audio_upload_path, current_user.username)): 
+                if not os.path.isdir(os.path.join(audio_upload_path, current_user.username)):
                     os.makedirs(os.path.join(audio_upload_path, current_user.username))
-                #creates the user folder in sheet upload folder if there isnt one    
-                if not os.path.isdir(os.path.join(sheet_upload_path, current_user.username)): 
+                #creates the user folder in sheet upload folder if there isnt one
+                if not os.path.isdir(os.path.join(sheet_upload_path, current_user.username)):
                     os.makedirs(os.path.join(sheet_upload_path, current_user.username))
                 #Checks if the time signature is valid
                 if not(form.timeSignature.data == '34' or form.timeSignature.data == '44'):
                     raise(ValueError)
-                
+
                 filename = files.save(form.file.data, os.path.join(audio_upload_path, current_user.username), form.title.data+'.')
                 author = current_user.username
                 AudioDirectory = os.path.join(audio_upload_path, current_user.username, form.title.data+filename[-4:])
@@ -180,13 +183,13 @@ def upload():
 
             #run main programs here
             notes, beats = mainMusicAnalysis(AudioDirectory)
-            
+
             # notes = [['C4'], ['C4'], ['C4'], ['C4']]
             # beats = [600, 1100, 3100, 4100, 5100]
 
             notes = [['C4'], ['C4'], ['D4'], ['C4'], ['F4'], ['E4'], ['C4'], ['C4'], ['D4'], ['C4'], ['G4'], ['F4'], ['C4'], ['C4'], ['C5'], ['A4'], ['F4'], ['E4'], ['D4'], ['A#4'], ['A#4'], ['A4'], ['F4'], ['G4'], ['F4']]
             beats = [600, 1100, 1600, 2600, 3600, 4600, 6600, 7100, 7600, 8600, 9600, 10600, 12600, 13100, 13600, 14600, 15600, 16600, 17600 , 18600, 19100, 19600, 20600, 21600, 22600, 24600]
-            
+
             mainSheetMusic(notes, beats, form.title.data, form.timeSignature.data, form.bpm.data, SheetDirectory, author)
 
             flash('Piece has been uploaded')
@@ -203,6 +206,6 @@ def piece(pieceid):
     SheetDirectory = db.engine.execute("SELECT SheetDirectory FROM piece WHERE piece.id = (?)", pieceid).scalar()
 
     #remove first 30 charcters to allow html to access it
-    SheetDirectory = SheetDirectory[30:]
+    SheetDirectory = SheetDirectory[52:]
     return render_template("showPiece.html", SheetDirectory=SheetDirectory)
 
